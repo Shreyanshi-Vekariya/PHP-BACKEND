@@ -14,7 +14,7 @@ else{
     $query1=mysqli_query($con,"select stud_name from student where stud_email='$email'") or die('Error in query');
 
     $row1=mysqli_fetch_array($query1);
-    echo "Hello ".$row1['stud_name'];
+    // echo "Hello ".$row1['stud_name'];
 
     $query2=mysqli_query($con," select * from student where student_id='$id' ") or die("Error in query");
     $row2=mysqli_fetch_array($query2);
@@ -39,22 +39,22 @@ else{
         form {
             margin: auto;
             border: 1px solid transparent;
-            box-shadow: 0 0 20px #17406c;
+            box-shadow: 0 0 20px black;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 0px;
         }
 
         h2 {
-            background-color: #17406c;
+            background-color: black;
             padding: 5px;
             color: #fff;
-            border-radius: 10px;
+            border-radius: 0px;
         }
 
         .btn {
             width: 100%;
             display: block;
-            background-color: #17406c;
+            background-color: black;
             color: #fff;
             font-weight:bold;
         }
@@ -62,10 +62,14 @@ else{
     </style>
   </head>
   <body>
+  <div class="container text-center mt-5">
+            <h5><?php
+                echo "Hello ".$row1['stud_name'];
+            ?></h5>
+            </div>
+  
   <form class="w-50 mt-5" method="POST">
-      <!-- <?php
-        echo "Hello ".$row1['stud_name'];
-      ?> -->
+      
         <h2 class="text-center">Update Details</h2>
         <div class="form-group mt-5">
             <div class="form-group mt-3">
@@ -105,7 +109,7 @@ if(isset($_POST['update'])){
 
     include 'connection.php';
 
-    $sql="update student set stud_name='$name',stud_email='$email',stud_password='$password',stud_mobno='$mobileno' where stud_id=$id";
+    $sql="update student set stud_name='$name',stud_email='$email',stud_password='$password',stud_mobno='$mobileno' where student_id=$id";
 
     $query=mysqli_query($con,$sql) or die("Error in Query");
         

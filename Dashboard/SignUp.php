@@ -13,7 +13,7 @@
             border: 1px solid transparent;
             padding: 30px;
             border-radius: 0px;
-            box-shadow: 0 0 20px #17406c;
+            box-shadow: 0 0 20px black;
         }
 
         h2 {
@@ -49,12 +49,22 @@
             <div class="form-group  mt-3">
                 <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter Password" required>
             </div>
+
+            <div class="form-group  mt-3">
+                <input type="password" class="form-control" name="conpwd" id="pwd" placeholder="Enter confirm Password" required>
+            </div>
             
             <div class="form-group  mt-3 ">
                 <input type="text" class="form-control" name="mobno" id="mobno" placeholder="Enter Contact No" required>
             </div>
         </div>
         <button type="submit" class="btn btn-primary mt-5" name="submit" >Submit</button>
+        <div class = "text-center">
+            <h6 class="mt-3"><span>Already have an Account?</span>
+            <a class = "reg"href="Login.php">LogIn here</a>
+                </h6>
+            
+        </div>
     </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -67,10 +77,12 @@
 
     include 'connection.php';
 
+    if($_POST['pwd']==$_POST['conpwd']){
     if(isset($_POST['submit'])){
         $name=$_POST['name'];
         $email=$_POST['email'];
         $password=$_POST['pwd'];
+        $cpassword=$_POST['conpwd'];
         $mobileno=$_POST['mobno'];
 
         $insert_query="Insert into student(stud_name,stud_email,stud_password,stud_mobno) values 
@@ -79,12 +91,15 @@
         $res=mysqli_query($con,$insert_query);
 
         if($res){
-            echo "data inserted";
+            header("Location:Login.php");
         }else{
             echo "data not inserted";
         }
     }
-
+}
+else{
+    echo '<script>alert("Password not matched")</script>';
+    }
     mysqli_close($con);
 
 

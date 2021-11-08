@@ -29,7 +29,7 @@ else{
             margin: auto;
             border: 1px solid transparent;
             border-radius: 0px;
-            box-shadow: 0 0 20px #17406c;
+            box-shadow: 0 0 20px black;
         }
         table td, table th {
             padding: 10px;
@@ -47,6 +47,9 @@ else{
             box-shadow: 0 0 15px blue;
             color:#ffffff;
         }
+        h5{
+            
+        }
         </style>
     </head>
     <body>
@@ -54,19 +57,20 @@ else{
     <table class="table w-50">
     <thead>
        
-        <tr>
+        
             <div class="container text-end mt-5">
-                <a href="Login.php">LOGOUT</a>
+                <a href="Logout.php">LOGOUT</a>
             </div>
+            
+            
+            
             <div class="text-center my-5"><h2>Student Details</h2></div>
-        </tr>
-      <tr>
-        <th>
-            <?php
+            <div class="container text-center mt-5">
+            <h5><?php
                 echo "Hello ".$row1['stud_name'];
-            ?>
-        </th> 
-      </tr>
+            ?></h5>
+            </div>
+      
       <tr>
         <th scope="col">ID</th>
         <th scope="col">NAME</th>
@@ -87,12 +91,19 @@ else{
     
     
 <?php
+
+session_start();
+include 'connection.php';
+
+if($_SESSION['email']==''){
+header('Location:Login.php');
+}
     $sql="select * from student";
 
     $query=mysqli_query($con,$sql);
 
     while($row=mysqli_fetch_array($query)){
-        $sid=$row['stud_id'];
+        $sid=$row['student_id'];
         echo "<tr>";
         echo "<td>".$sid."</td>";
         echo "<td>".$row['stud_name']."</td>";

@@ -12,15 +12,21 @@
             border: 1px solid transparent;
             padding: 30px;
             border-radius: 0px;
-            box-shadow: 0 0 20px #17406c;
+            box-shadow: 0 0 20px black;
         }
-
+        a{
+            font-size:14px;
+            color:black;
+            
+        }
+        
         h2 {
             background-color: black;
             padding: 5px;
             color: #fff;
             border-radius: 0px;
         }
+
 
         .btn {
             width: 100%;
@@ -46,9 +52,18 @@
             <div class="form-group  mt-3">
                 <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter Password" required>
             </div>
+            <div>
+                <a href="#">Forgot password?</a>
+            </div>
             
         </div>
         <button type="submit" class="btn btn-primary mt-5" name="submit" >Submit</button>
+        <div class = "text-center">
+            <h6 class="mt-3"><span>Don't have an Account?</span>
+            <a class = "reg"href="SignUp.php"> Register here</a>
+                </h6>
+            
+        </div>
     </form>
 
     </form>
