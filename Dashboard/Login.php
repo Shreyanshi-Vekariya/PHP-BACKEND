@@ -52,9 +52,11 @@
             <div class="form-group  mt-3">
                 <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter Password" required>
             </div>
-            <div>
-                <a href="#">Forgot password?</a>
-            </div>
+            <div class="field-group">
+		<div class = "mt-3"><input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?> />
+		<label for="remember-me">Remember me</label>
+	</div>
+            
             
         </div>
         <button type="submit" class="btn btn-primary mt-5" name="submit" >Submit</button>
