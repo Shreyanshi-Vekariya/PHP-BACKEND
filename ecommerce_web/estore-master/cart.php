@@ -1,3 +1,35 @@
+<?php
+
+
+include "../admin_panel/connection.php";
+
+$pro_id=$_GET['pid'];
+
+$sql="select * from product where p_id='$pro_id'" or die("error in query");
+
+$query=mysqli_query($con,$sql);
+
+while($row=mysqli_fetch_array($query))
+{
+  $cart_id=$row['cart_id'];
+$p_name=$row['p_name'];
+$p_price=$row['p_price'];
+$p_image=$row['p_img'];
+}
+
+$query="insert into cart(pro_id,pro_name,pro_price,pro_image) values('$pro_id','$p_name','$p_price','$p_image')" or die("error in query");
+if(mysqli_query($con,$query))
+{
+//echo "done";
+}
+else
+{
+//echo "failed";
+}
+?>
+
+
+
 <!doctype html>
 <html lang="zxx">
 
@@ -81,7 +113,7 @@
                             <div class="main-menu f-right d-none d-lg-block">
                                 <nav>                                                
                                     <ul id="navigation">                                                                                                                                     
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="index.php">Home</a></li>
                                         <li><a href="Catagori.html">Catagori</a></li>
                                         <li class="hot"><a href="#">Latest</a>
                                             <ul class="submenu">
@@ -128,7 +160,7 @@
                                 </li>
                                 <li>
                                     <div class="shopping-card">
-                                        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
                                 </li>
                                <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">Sign in</a></li>
@@ -154,7 +186,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>Card List</h2>
+                        <h2>Cart List</h2>
                     </div>
                 </div>
             </div>
@@ -178,20 +210,30 @@
               </tr>
             </thead>
             <tbody>
+
+            <?php
+            include '../admin_panel/connection.php';
+            $query = mysqli_query($con, "select * from cart");
+            while($row = mysqli_fetch_array($query))
+
+            {
+            ?>
+
               <tr>
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="assets/img/arrivel/arrivel_1.png" alt="" />
+                      <img src="../admin_panel/<?php echo htmlentities($row['pro_image']); ?>" width= '100' height="100" alt="" />
                     </div>
                     <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
+                      <p><?php echo htmlentities($row['pro_name']); ?></p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <h5>$360.00</h5>
+                  <h5><?php echo htmlentities($row['pro_price']); ?></h5>
                 </td>
+                 
                 <td>
                   <div class="product_count">
                     <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
@@ -212,32 +254,18 @@
                 <td>
                   <h5>$720.00</h5>
                 </td>
+
+                <td class="actions" data-th="">
+                                    <div class="text-center">
+                                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                            <a class="text-danger" href="dlt-cart.php?cartid=<?php echo $row['cart_id']; ?>"><i class="fas fa-trash"></i></a>
+                                        </button>
+                                    </div>
+                                </td>
               </tr>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="assets/img/arrivel/arrivel_2.png" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                      <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                      <input class="input-number" type="text" value="1" min="0" max="10">
-                      <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-              </tr>
+
+              <?php } ?>
+              
               <tr class="bottom_button">
                 <td>
                   <a class="btn_1" href="#">Update Cart</a>

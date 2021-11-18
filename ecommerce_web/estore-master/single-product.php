@@ -63,7 +63,7 @@
                                        <li><a href="login.html">My Account </a></li>
                                        <li><a href="product_list.html">Wish List  </a></li>
                                        <li><a href="cart.html">Shopping</a></li>
-                                       <li><a href="cart.html">Cart</a></li>
+                                       <li><a href="cart.php">Cart</a></li>
                                        <li><a href="checkout.html">Checkout</a></li>
                                    </ul>
                                 </div>
@@ -85,7 +85,7 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>                                                
                                         <ul id="navigation">                                                                                                                                     
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="index.php">Home</a></li>
                                             <li><a href="Catagori.html">Catagori</a></li>
                                             <li class="hot"><a href="#">Latest</a>
                                                 <ul class="submenu">
@@ -102,7 +102,7 @@
                                             <li><a href="#">Pages</a>
                                                 <ul class="submenu">
                                                     <li><a href="login.html">Login</a></li>
-                                                    <li><a href="cart.html">Card</a></li>
+                                                    <li><a href="cart.php">Card</a></li>
                                                     <li><a href="elements.html">Element</a></li>
                                                     <li><a href="about.html">About</a></li>
                                                     <li><a href="confirmation.html">Confirmation</a></li>
@@ -132,7 +132,7 @@
                                     </li>
                                     <li>
                                         <div class="shopping-card">
-                                            <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                            <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
                                         </div>
                                     </li>
                                    <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">Sign in</a></li>
@@ -171,19 +171,45 @@
   <div class="product_image_area">
     <div class="container">
       <div class="row justify-content-center">
+          <?php
+          include '../admin_panel/connection.php';
+          $prodid = $_GET['pid'];
+          $query = mysqli_query($con, "select * from product where p_id = '$prodid'");
+          while($row=mysqli_fetch_array($query))
+          {
+              ?>
+          
         <div class="col-lg-12">
-          <div class="product_img_slide owl-carousel">
+          <div class="product_img_slide owl-carousel w-50">
             <div class="single_product_img">
-              <img src="assets/img/product/single_product.png" alt="#" class="img-fluid">
+              <img src="../admin_panel/<?php echo htmlentities($row['p_img']);?>" alt="#" class="img-fluid">
             </div>
             <div class="single_product_img">
-              <img src="assets/img/product/single_product.png" alt="#" class="img-fluid">
+              <img src="../admin_panel/<?php echo htmlentities($row['p_img']);?>" alt="#" class="img-fluid">
             </div>
             <div class="single_product_img">
-              <img src="assets/img/product/single_product.png" alt="#" class="img-fluid">
+              <img src="../admin_panel/<?php echo htmlentities($row['p_img']);?>"alt="#" class="img-fluid">
             </div>
           </div>
+
+          <div class="product-caption">
+            <div class="product-ratting">
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star low-star"></i>
+                <i class="far fa-star low-star"></i>
+            </div>
+            <h4><a href=""><?php echo htmlentities($row['p_description']); ?></a></h4>
+            <div class="price">
+                <ul>
+                    <li><?php echo htmlentities($row['p_price']); ?></li>
+                    
+                </ul>
+            </div>
         </div>
+        </div>
+          
         <div class="col-lg-8">
           <div class="single_product_text text-center">
             <h3>Foam filling cotton slow <br>
@@ -202,11 +228,12 @@
                     <p>$5</p>
                 </div>
               <div class="add_to_cart">
-                  <a href="#" class="btn_3">add to cart</a>
+                  <a href="cart.php?pid=<?php echo $row['p_id'];?>" class="btn_3">add to cart</a>
               </div>
             </div>
           </div>
         </div>
+        <?php } ?>
       </div>
     </div>
   </div>

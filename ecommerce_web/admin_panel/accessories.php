@@ -110,8 +110,8 @@ while($row=mysqli_fetch_array($query))
     
     echo "<td>".$row['c_name']."</td>";
 
-    echo "<td><a href='update_product.php?p_id=$p_id'>EDIT</a></td>";
-    echo "<td><a href='delete_product.php?p_id=$p_id'>DELETE</a></td>";
+    echo "<td><a href='updateproduct.php?p_id=$p_id'>EDIT</a></td>";
+    echo "<td><a href='deletproduct.php?p_id=$p_id'>DELETE</a></td>";
     echo "</tr>";
 }
 echo "</table></center>";

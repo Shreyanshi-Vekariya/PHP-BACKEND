@@ -9679,12 +9679,14 @@ input:focus {
 ============================================================================================ */
 /* line 4, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .single-product {
+ 
   text-align: center;
   margin-bottom: 50px;
 }
 
 /* line 8, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .single-product .product-img {
+ 
   position: relative;
   overflow: hidden;
 }

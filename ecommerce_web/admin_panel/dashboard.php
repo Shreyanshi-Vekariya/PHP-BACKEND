@@ -3,7 +3,7 @@ session_start();
 include 'connection.php';
 
 if($_SESSION['email']==''){
-header('Location:login.php');
+header('Location:Login.php');
 }
 else{
 $email=$_SESSION['email'];

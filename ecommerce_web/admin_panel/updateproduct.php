@@ -101,18 +101,17 @@ else{
 </div>
             
     </div>
-    <div class="form-group  mt-3">
-    <label class = "form-control" for="cat">Choose category:</label>
-
+   
 
 
   <div class="form-group mt-3">
 <label class="form-control" for="categories">Choose a Categories:</label>
 <select name="cname" id="categories" value="<?php echo $cname ?>">
-<option value><?php echo $cname ?></option>
+<option value="<?php echo $cname ?>"><?php echo $cname ?></option>
 <option value="women">women</option>
 <option value="men">men</option>
 <option value="kids">kids</option>
+<option value="kids">Accessories</option>
 </select>
 </div>
             
@@ -134,8 +133,14 @@ if(isset($_POST['update'])){
     $name=$_POST['pname'];
     $p_price=$_POST['pprice'];
     $p_desc=$_POST['desc'];
-    $filepath = "./Images/" . $_FILES["file"]["name"];
+    //$filepath = "./Images/" . $_FILES["file"]["name"];
     $selected=$_POST['cname'];
+
+    if($_FILES["file"]["size"]==0){
+        $filepath=$img;
+    }else{
+        $filepath = "./images/" . $_FILES["file"]["name"];
+    }
 
     include 'connection.php';
     move_uploaded_file($_FILES["file"]["tmp_name"], $filepath);

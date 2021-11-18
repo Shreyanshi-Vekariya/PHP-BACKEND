@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,10 +60,11 @@
     <label class = "form-control" for="cat">Choose category:</label>
 
 <select class = "form-control"  name="cat" id="cat">
-  <option value="men">men</option>
+<option>---Select Category---</option>  
+<option value="men">Men</option>
   <option value="women">Women</option>
   <option value="kids">Kids</option>
-  <option value="kids">Accessories</option>
+  <option value="accessories">Accessories</option>
   </div>
   
 </select>
