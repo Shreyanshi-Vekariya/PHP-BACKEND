@@ -24,7 +24,7 @@
 			<br><br>
 
 			<p>Message</p>
-			<textarea id="body" rows="5" placeholder="Type Message"></textarea><!--textarea tag should be closed (In this coding UI textarea close tag cannot be used)-->
+			<textarea id="body" rows="5" placeholder="Type Message"></textarea>
 			<br><br>
 
 			<button type="button" onclick="sendEmail()" value="Send An Email">Submit</button>
